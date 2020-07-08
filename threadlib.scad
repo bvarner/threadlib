@@ -33,10 +33,17 @@ module thread(designator, turns, higbee_arc=20, fn=120, table=THREAD_TABLE)
         higbee_arc=higbee_arc,
         r=Rrotation,
         turns=turns,
-        pitch=P);
+        pitch=P,
+        fn=fn);
 }
 
-module bolt(designator, turns=0, length=0, higbee_arc=20, fn=120, table=THREAD_TABLE) {
+
+// turns      - If specified, creates a supporting structure with n turns of a thread around it.
+// length     - If specified, creates a supporting structure of length, with half-pitch offset to the ends.
+// leadin     - 0 (default): no chamfer; 1: chamfer (45 degrees) at max-z end;
+//              2: chamfer at both ends, 3: chamfer at z=0 end.
+// leadfac    - scale of leadin chamfer (default: 1.0 = 1/2 thread).
+module bolt(designator, turns=0, length=0, leadin=0, leadfac=1.0, higbee_arc=20, fn=120, table=THREAD_TABLE) {
     difference() {
         specs = thread_specs(str(designator, "-ext"), table=table);
         P = specs[0]; Dsupport = specs[2];
@@ -59,8 +66,32 @@ module bolt(designator, turns=0, length=0, higbee_arc=20, fn=120, table=THREAD_T
             translate([0, 0, H])
                 cylinder(h=P/2, d=int_specs[2], $fn=fn);
         }
+        
+        // If a leadin is specified, trim the appropriate ends with the proper camfer form.
+        if (leadin > 0) {
+            int_specs = thread_specs(str(designator, "-int"), table = table);
+
+            // chamfer max-z end
+            if (leadin == 1 || leadin == 2) {
+                translate([0, 0, H - P * leadfac / 2])
+                    difference() {
+                        cylinder(h=P * leadfac / 2, d=int_specs[2], $fn=fn);
+                        cylinder(h=P * leadfac / 2, d1=int_specs[2], d2=Dsupport, $fn=fn);
+                    }
+            }
+            
+            // chamfer min-z end
+            if (leadin == 3 || leadin == 2) {
+                difference() {
+                    cylinder(h=P * leadfac / 2, d=int_specs[2], $fn=fn);
+                    cylinder(h=P * leadfac / 2, d1=Dsupport, d2=int_specs[2], $fn = fn);
+                }
+            }
+        }
     }
 };
+
+rotate([0, 0, -180]) bolt("M8x1", length = 4, leadin=2, higbee_arc=180, fn=360);
 
 module tap(designator, turns=0, length=0, higbee_arc=20, fn=120, table=THREAD_TABLE) {
     difference() {
