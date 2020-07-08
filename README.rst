@@ -90,6 +90,7 @@ See these nice lead-in / lead-out tapers?
 or to create a bolt (without head) that's 7mm in length with M4 thread, and a chamfer on the threads upper end:
 
 .. code-block:: OpenSCAD
+
         bolt("M4", length=7, higbee_arc=180, leadin=1);
 
 .. image:: docs/imgs/bolt-bylength-M4.png
