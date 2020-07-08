@@ -85,7 +85,17 @@ To create a bolt (without head) with 5 turns of M4 thread:
 .. image:: docs/imgs/bolt-M4.png
         :alt: Bolt with M4 thread
 
-See these nice lead-in / lead-out tapers? Try a nut (this time using the default
+See these nice lead-in / lead-out tapers? 
+
+or to create a bolt (without head) that's 7mm in length with M4 thread, and a chamfer on the threads upper end:
+
+.. code-block:: OpenSCAD
+        bolt("M4", length=7, higbee_arc=180, leadin=1);
+
+.. image:: docs/imgs/bolt-bylength-M4.png
+        :alt: 7mm Bolt with M4 thread
+
+Try a nut (this time using the default
 argument for higbee_arc):
 
 .. code-block:: OpenSCAD
@@ -97,6 +107,29 @@ argument for higbee_arc):
 
 Note that for a nut you also have to specify an outer diameter. The inner
 diameter is implicitly given by the thread designator ("M12x0.5" in this case).
+
+Try a positive 'tap' to remove from an existing solid to produce a hex-shaped nut:
+
+.. code-block:: OpenSCAD
+
+        tap("M4", length=7, higbee_arc=180);
+
+.. image:: docs/imgs/tap-M4.png
+        :alt: M4 tap positive
+
+
+Use that to cut a hex-nut...
+
+.. code-block:: OpenSCAD
+
+        difference() {
+            cylinder(d = 12, h=4, $fn = 6);
+            tap("M6", length=4, higbee_arc=180);
+        }
+
+.. image:: docs/imgs/hexnut-M6.png
+        :alt: M6 Hex Nut
+
 
 If you only need the threads alone:
 
