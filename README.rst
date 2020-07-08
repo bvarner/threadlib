@@ -109,7 +109,7 @@ argument for higbee_arc):
 Note that for a nut you also have to specify an outer diameter. The inner
 diameter is implicitly given by the thread designator ("M12x0.5" in this case).
 
-Try a positive 'tap' to remove from an existing solid to produce a hex-shaped nut:
+Try a positive 'tap' to remove from an existing solid:
 
 .. code-block:: OpenSCAD
 
@@ -119,7 +119,7 @@ Try a positive 'tap' to remove from an existing solid to produce a hex-shaped nu
         :alt: M4 tap positive
 
 
-Use that to cut a hex-nut...
+And use that that to cut a hex-nut...
 
 .. code-block:: OpenSCAD
 
