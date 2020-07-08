@@ -91,8 +91,6 @@ module bolt(designator, turns=0, length=0, leadin=0, leadfac=1.0, higbee_arc=20,
     }
 };
 
-rotate([0, 0, -180]) bolt("M8x1", length = 4, leadin=2, higbee_arc=180, fn=360);
-
 module tap(designator, turns=0, length=0, higbee_arc=20, fn=120, table=THREAD_TABLE) {
     difference() {
         specs = thread_specs(str(designator, "-int"), table=table);
