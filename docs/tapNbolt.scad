@@ -1,8 +1,8 @@
 /*
 Create nice previews for documentation
 
-:Author: Adrian Schlatter
-:Date: 2019-04-10
+:Author: Bryan Varner
+:Date: 2020-06-08
 :License: 3-Clause BSD. See LICENSE.
 */
 
@@ -24,7 +24,7 @@ if (crosssection) {
 
 intersection() {
     difference() {
-        cylinder(d = 12, h=length, $fn = 6);
+        cylinder(d = 11.05, h=length, $fn = 6);
         tap(type, length=length, higbee_arc=higbee_arc);
     }
     if (crosssection) {

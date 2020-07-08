@@ -124,7 +124,7 @@ And use that that to cut a hex-nut...
 .. code-block:: OpenSCAD
 
         difference() {
-            cylinder(d = 12, h=4, $fn = 6);
+            cylinder(d = 11.05, h=4, $fn = 6);
             tap("M6", length=4, higbee_arc=180);
         }
 
