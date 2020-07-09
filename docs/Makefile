@@ -23,7 +23,7 @@ tap-bylength-M4.png: tap-bylength.scad
 	$(im) $@ -transparent "#ffffe5" -trim -resize 124x124\> $@
 
 hexnut-M6.png: tapNbolt.scad
-	$(os) $(opts) --render --D 'type="M6"' --D 'crosssection=false' --camera=-2.2,1.2,1.8,66,0,73,52 --imgsize=2048,2048 --projection=ortho -o $@ $<
+	$(os) $(opts) --render --D 'type="M6"' --D 'crosssection=false' --D 'length=5' --camera=-2.2,1.2,1.8,66,0,73,52 --imgsize=2048,2048 --projection=ortho -o $@ $<
 	$(im) $@ -transparent "#ffffe5" -trim -resize 124x124\> $@
 
 nutNtap.png: tapNbolt.scad

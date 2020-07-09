@@ -119,7 +119,7 @@ Try a positive 'tap' to remove from an existing solid:
         :alt: M4 tap positive
 
 
-And use that that to cut a hex-nut...
+And use that that to cut a hex-nut:
 
 .. code-block:: OpenSCAD
 
