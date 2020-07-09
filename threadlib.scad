@@ -27,14 +27,19 @@ function thread_specs(designator, table=THREAD_TABLE) =
 module thread(designator, turns, higbee_arc=20, fn=120, table=THREAD_TABLE)
 {
     specs = thread_specs(designator, table=table);
+    starts = len(specs) < 5 ? 1 : specs[4];
     P = specs[0]; Rrotation = specs[1]; section_profile = specs[3];
-    straight_thread(
-        section_profile=section_profile,
-        higbee_arc=higbee_arc,
-        r=Rrotation,
-        turns=turns,
-        pitch=P,
-        fn=fn);
+    
+    for (s = [1 : starts]) {
+        rotate([0, 0, 360 / starts * s]) 
+        straight_thread(
+            section_profile=section_profile,
+            higbee_arc=higbee_arc,
+            r=Rrotation,
+            turns=turns,
+            pitch=P,
+            fn=fn);
+    }
 }
 
 
